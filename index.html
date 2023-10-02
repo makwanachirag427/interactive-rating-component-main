@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Frontend Mentor | Interactive rating component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Overpass", sans-serif;
+        background-color: hsl(216, 12%, 8%);
+      }
+      .rating-card {
+        height: 415px;
+        width: 415px;
+        background-color: hsl(213, 19%, 18%);
+        padding: 30px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      .rating-card img {
+        background: rgba(255, 249, 249, 0.1);
+        border-radius: 50%;
+        padding: 15px;
+      }
+      .rating-card h1 {
+        color: hsl(0, 0%, 100%);
+        font-size: 30px;
+        font-weight: 700;
+        margin-top: 30px;
+      }
+      .rating-card p {
+        color: hsl(216, 12%, 54%);
+        margin-top: 10px;
+        line-height: 25px;
+      }
+      .rating-buttons {
+        margin-top: 20px;
+      }
+      .rating-button {
+        height: 50px;
+        width: 50px;
+        outline: none;
+        border: 0;
+        background: rgba(255, 249, 249, 0.1);
+        margin-inline-start: 20px;
+        border-radius: 50%;
+        color: hsl(216, 12%, 54%);
+        font-size: 18px;
+        font-weight: bold;
+        font-family: "Overpass", sans-serif;
+        cursor: pointer;
+      }
+      .rating-buttons button:hover {
+        background-color: hsl(25, 97%, 53%);
+        color: hsl(0, 0%, 100%);
+      }
+      .clicked-bg {
+        background: hsl(216, 12%, 54%);
+        color: hsl(0, 0%, 100%);
+      }
+      .rating-buttons button:first-child {
+        margin: 0;
+      }
+      button[type="submit"] {
+        margin: 0 auto;
+        padding-top: 5px;
+        margin-top: 30px;
+        border-radius: 30px;
+        height: 45px;
+        width: 350px;
+        outline: none;
+        border: 0;
+        background-color: hsl(25, 97%, 53%);
+        color: hsl(0, 0%, 100%);
+        text-transform: uppercase;
+        font-family: "Overpass", sans-serif;
+        font-size: 15px;
+        letter-spacing: 3px;
+        cursor: pointer;
+      }
+      button[type="submit"]:hover {
+        background-color: hsl(0, 0%, 100%);
+        color: hsl(25, 97%, 53%);
+      }
+
+      .thank-you-card {
+        height: 415px;
+        width: 415px;
+        background-color: hsl(213, 19%, 18%);
+        padding: 30px;
+        padding-inline: 25px;
+        border-radius: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        display: none;
+      }
+      .thank-you-card > img {
+        margin-top: 17px;
+        height: 112px;
+        width: 165px;
+      }
+      .thank-you-card > h2 {
+        color: hsl(0, 0%, 100%);
+        font-size: 30px;
+        margin-top: 30px;
+      }
+      .thank-you-card > p {
+        margin-top: 10px;
+        text-align: center;
+        color: hsl(0, 2%, 67%);
+        line-height: 25px;
+      }
+      .selected-star {
+        background: rgba(255, 249, 249, 0.1);
+        padding: 7px;
+        margin-top: 30px;
+        font-size: 15px;
+        width: 215px;
+        border-radius: 30px;
+        color: hsl(25, 97%, 53%);
+      }
+      span {
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Rating state start -->
+    <div class="rating-card">
+      <img src="images/icon-star.svg" />
+      <h1>How did we do?</h1>
+      <p>
+        Please let us know how we did with your support request. All feedback is
+        appreciated to help us improve our offering!
+      </p>
+      <div class="rating-buttons">
+        <button class="rating-button">1</button>
+        <button class="rating-button">2</button>
+        <button class="rating-button">3</button>
+        <button class="rating-button">4</button>
+        <button class="rating-button">5</button>
+      </div>
+      <button type="submit">Submit</button>
+    </div>
+
+    <!-- Rating state end -->
+
+    <!-- Thank you state start -->
+    <div class="thank-you-card">
+      <img src="images/illustration-thank-you.svg" alt="Thank You" />
+      <div class="selected-star">You selected <span>4</span> out of 5</div>
+      <h2>Thank you!</h2>
+      <p>
+        We appreciate you taking the time to give a rating. If you ever need
+        more support, don’t hesitate to get in touch!
+      </p>
+    </div>
+
+    <!-- Add rating here -->
+
+    <!-- Thank you state end -->
+    <script>
+      const thankYouCard = document.querySelector(".thank-you-card");
+      const ratingCard = document.querySelector(".rating-card");
+      const submit = document.querySelector("button[type='submit']");
+      const span = document.querySelector("span");
+      let selectedButton = null;
+      const ratingButttons = Array.from(
+        document.querySelectorAll(".rating-button")
+      );
+
+      ratingButttons.forEach((button) =>
+        button.addEventListener("click", (e) => {
+          if (selectedButton == null) {
+            button.classList.toggle("clicked-bg");
+          } 
+
+          console.dir(button);
+          const spanText = button.classList.contains("clicked-bg")
+            ? button.textContent
+            : "4";
+          console.log(spanText);
+          span.textContent = spanText;
+        })
+      );
+
+      submit.addEventListener("click", () => {
+        ratingCard.style.display = "none";
+        thankYouCard.style.display = "inherit";
+      });
+    </script>
+  </body>
+</html>
